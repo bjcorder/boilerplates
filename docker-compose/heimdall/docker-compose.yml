@@ -12,7 +12,7 @@ services:
       - /mnt/service-data/heimdall:/config
     restart: unless-stopped
     networks:
-      - name: traefik-test_default
+      - name: "traefik-test_default"
     labels:
       traefik.enable: "true"
       traefik.http.routers.heimdall.entrypoints: "websecure"
