@@ -11,10 +11,10 @@ services:
     restart: unless-stopped
     labels:
       traefik.enable: "true"
-      traefik.http.routers.wikijs.entrypoints: "websecure"
-      traefik.http.routers.wikijs.rule: "Host(`status.signaturegraph.net`)"
-      traefik.http.routers.wikijs.tls: "true"
-      traefik.http.routers.wikijs.tls.certresolver: "staging"
+      traefik.http.routers.uptime-kuma.entrypoints: "websecure"
+      traefik.http.routers.uptime-kuma.rule: "Host(`status.signaturegraph.net`)"
+      traefik.http.routers.uptime-kuma.tls: "true"
+      traefik.http.routers.uptime-kuma.tls.certresolver: "staging"
 networks:
   traefik_default:
     external: true
