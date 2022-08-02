@@ -11,7 +11,7 @@ services:
     volumes:
       - /mnt/service-data/heimdall:/config
     networks:
-      - traefik-test_default
+      - traefik_default
     restart: unless-stopped
     labels:
       traefik.enable: "true"
@@ -20,5 +20,5 @@ services:
       traefik.http.routers.heimdall.tls: "true"
       traefik.http.routers.heimdall.tls.certresolver: "staging"
 networks:
-  traefik-test_default:
+  traefik_default:
     external: true
