@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  wikijs:
+    image: lscr.io/linuxserver/wikijs:latest
+    container_name: wikijs
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/service-data/wikijs/conf:/config
+      - /mnt/service-data/wikijs/data:/data
+    networks:
+      - traefik_default
+    restart: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.wikijs.entrypoints: "websecure"
+      traefik.http.routers.wikijs.rule: "Host(`wiki.signaturegraph.net`)"
+      traefik.http.routers.wikijs.tls: "true"
+      traefik.http.routers.wikijs.tls.certresolver: "staging"
+networks:
+  traefik_default:
+    external: true
