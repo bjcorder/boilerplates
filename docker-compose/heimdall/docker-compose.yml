@@ -6,16 +6,19 @@ services:
     image: linuxserver/heimdall:arm64v8-latest
     environment:
       TZ: 'America/Chicago'
-      PUID: '1000'
-      PGID: '1000'
+      PUID: $PUID
+      PGID: $PGID
     volumes:
       - /mnt/service-data/heimdall:/config
-    restart: unless-stopped
     networks:
-      - name: "traefik-test_default"
+      - traefik-test_default
+    restart: unless-stopped
     labels:
       traefik.enable: "true"
       traefik.http.routers.heimdall.entrypoints: "websecure"
       traefik.http.routers.heimdall.rule: "Host(`heimdall.signaturegraph.net`)"
       traefik.http.routers.heimdall.tls: "true"
       traefik.http.routers.heimdall.tls.certresolver: "staging"
+networks:
+  traefik-test_default:
+    external: true
