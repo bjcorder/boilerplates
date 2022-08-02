@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  pihole:
-    container_name: pihole
+  heimdall:
+    container_name: heimdall
     image: linuxserver/heimdall:arm64v8-latest
     environment:
       TZ: 'America/Chicago'
