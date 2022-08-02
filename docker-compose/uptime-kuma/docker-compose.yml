@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    volumes:
+      - /mnt/service-data/uptime-kuma:/app/data
+    networks:
+      - traefik_default
+    restart: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.wikijs.entrypoints: "websecure"
+      traefik.http.routers.wikijs.rule: "Host(`status.signaturegraph.net`)"
+      traefik.http.routers.wikijs.tls: "true"
+      traefik.http.routers.wikijs.tls.certresolver: "staging"
+networks:
+  traefik_default:
+    external: true
