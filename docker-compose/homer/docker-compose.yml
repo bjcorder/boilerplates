@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  homer:
+    container_name: homer
+    image: b4bz/homer:latest-arm64v8
+    volumes:
+      - /mnt/service-data/homer:/www/assets
+    networks:
+      - traefik_default
+    restart: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.homer.entrypoints: "websecure"
+      traefik.http.routers.homer.rule: "Host(`homer.signaturegraph.net`)"
+      traefik.http.routers.homer.tls: "true"
+      traefik.http.routers.homer.tls.certresolver: "staging"
+networks:
+  traefik_default:
+    external: true
